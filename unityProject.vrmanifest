@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.vrplatform.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "E:\\Game Projects\\Pursuit of Redemption\\VR Platform\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "E:\\Game Projects\\VR_Geometry\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "VR Platform [Testing]"

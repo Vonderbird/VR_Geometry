@@ -51,13 +51,46 @@ public class InputModule : BaseInputModule
 
     private void ProcessPress(PointerEventData data)
     {
-        
+        //set raycast
+        data.pointerPressRaycast = data.pointerCurrentRaycast;
+        //check for object hit, get the down handler and then call it
+        GameObject newPointerPress = ExecuteEvents.ExecuteHierarchy(currentObject, data, ExecuteEvents.pointerDownHandler);
+        //if no down handler, get click handler
+        if (newPointerPress == null)
+        {
+            newPointerPress = ExecuteEvents.GetEventHandler<IPointerClickHandler>(currentObject);
+        }
+
+        //Set data
+        data.pressPosition = data.position;
+        data.pointerPress = newPointerPress;
+        data.rawPointerPress = currentObject;
+
     }
 
     private void ProcessRelease(PointerEventData data)
     {
-            
+        //execute pointer up
+        ExecuteEvents.Execute(data.pointerPress, data, ExecuteEvents.pointerUpHandler);
+        //check for click handler
+        GameObject pointerUpHandler = ExecuteEvents.GetEventHandler<IPointerClickHandler>(currentObject);
+
+        //check to see if the object that we pressed and the object that we are moving up the button on are the same
+        if (data.pointerPress == pointerUpHandler)
+        {
+            ExecuteEvents.Execute(data.pointerPress, data, ExecuteEvents.pointerClickHandler);
+        }
+        //clear selected gameobject
+        eventSystem.SetSelectedGameObject(null);
+
+        //Reset Data
+        data.pressPosition = Vector2.zero;
+        data.pointerPress = null;
+        data.rawPointerPress = null;
+        
     }
+    
+    
     // Update is called once per frame
     void Update()
     {
