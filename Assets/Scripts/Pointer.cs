@@ -50,6 +50,7 @@ public class Pointer : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(transform.position,transform.forward);
         Physics.Raycast(ray, out hit, m_DefaultLength);
+        
         return hit;
     }
 }

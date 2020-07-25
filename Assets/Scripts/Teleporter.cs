@@ -24,11 +24,12 @@ public class Teleporter : MonoBehaviour
     {
         // Pointer
         m_HasPosition = UpdatePointer();
-        m_Pointer.SetActive(m_HasPosition);
+        m_Pointer.SetActive(m_TeleportAction.state);
 
         //Teleport
         if (m_TeleportAction.GetStateUp(m_Pose.inputSource))
         {
+            
             TryTeleport();
         }
 

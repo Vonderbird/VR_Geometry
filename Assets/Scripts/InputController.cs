@@ -13,5 +13,10 @@ public class InputController : MonoBehaviour
         {
             uIController.ShowMenu(SteamVR_Actions._default.MenuUI.state);
         }
+        // Release the object with trigger
+        if (SteamVR_Actions._default.GrabPinch.GetLastStateDown(SteamVR_Input_Sources.Any))
+        {
+            
+        }
     }
 }
